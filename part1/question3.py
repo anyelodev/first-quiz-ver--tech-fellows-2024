@@ -27,10 +27,13 @@
 
 # This function should return an oven instance!
 def make_oven():
-  None
+  """Creates and returns an empty oven."""
+  oven = Oven()
+  return oven
+
 
 def alchemy_combine(oven, ingredients, temperature):
-  
+  """Combines the given ingredients in the oven at the specified temperature."""
   for item in ingredients:
     oven.add(item)
 

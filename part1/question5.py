@@ -18,28 +18,31 @@
 # name text
 # vegetarian integer
 
-sql_create_favorite_foods = """
+sql_create_favorite_foods =
 
-Your SQL here.
-
-"""
+CREATE TABLE favorite_foods (
+    food_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    vegetarian INTEGER NOT NULL
+);
 
 # Part 5.B:
 # Alter the animals and people tables by adding a new column to each called 'favorite_food_id'
 # The test suite will verify the new changes by inserting some new rows. 
 
-sql_alter_tables_with_favorite_food = """
+sql_alter_tables_with_favorite_food = 
 
-Your SQL here.
+ALTER TABLE pets ADD COLUMN favorite_food_id INTEGER REFERENCES favorite_foods(food_id);
 
-"""
+ALTER TABLE people ADD COLUMN favorite_food_id INTEGER REFERENCES favorite_foods(food_id);
 
 # Part 5.C:
 # Write a query to select all pets that are vegetarian.
 # THe output should be a list of tuples in the format: (<pet name>, <food name>)
 
-sql_select_all_vegetarian_pets = """
+sql_select_all_vegetarian_pets =
 
-Your SQL here.
-
-"""
+SELECT pets.pet_name, favorite_foods.name AS food_name
+FROM pets
+JOIN favorite_foods ON pets.favorite_food_id = favorite_foods.food_id
+WHERE favorite_foods.vegetarian = 1;
